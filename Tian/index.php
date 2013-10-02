@@ -142,8 +142,10 @@ $( "#datepicker" ).datepicker();
         <div class="grid_5">
             <div class="box round">
                 <h2>
-                    Figures</h2>
-                <div class="block">
+                    Figures
+                </h2>
+                <form method="post" action="">
+               		 <div class="block">
                 	 	<?php 
                 		    while ($obj = $daily_expense_types ->fetch_object()) 	{
                 		    	echo '<div class="stat-col">
@@ -153,14 +155,13 @@ $( "#datepicker" ).datepicker();
                 		    			 		<input name="type" type="radio" value="'.$obj->id.'" /></span>
                 		    			 	</div>';
  											  }
-                		?>
-                		<div class="stat-col">
-    
-                		</div>                   
-                    <div class="clear">
-                    </div>		<br /><span>	Date:</span><input type="text" id="datepicker" />
-                    <input type="submit" class="btn btn-green" style="margin-top:10px;" value="Submit"/>
-                </div>
+                		?>                  
+                    		<div class="clear">
+                    		</div>		<br /><span>	Date:</span><input type="text" id="datepicker" />
+                   		  		<br />Name: <input type="text" name="name"/><br />
+                    		<input type="submit" class="btn btn-green" style="margin-top:10px;" value="Submit"/>
+              		  </div>
+                </form>
             </div>
         </div>
         <div class="grid_5">

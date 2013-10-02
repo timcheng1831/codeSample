@@ -7,8 +7,11 @@ define('REMOTE_ADDR', $_SERVER['REMOTE_ADDR']);
 
 define('DAILY_EXPENSE_TYPES',"daily_expense_types");
 
-require_once('db.inc');
+require_once('db_object.inc');
 
-$db = new Database();
+$db = new Db_object();
 $daily_expense_types = $db->displayAction(DAILY_EXPENSE_TYPES, null);
+
+require_once('users.php');
+
 ?>
