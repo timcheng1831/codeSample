@@ -6,7 +6,7 @@ class Database{
 	private static $_instance;
 	
 	public function  __construct(){
-		$this->_connection = new mysqli('localhost', 'timcheng1831', 'KaVb8SeMt6pYxw5D', 'data');
+		$this->_connection = new mysqli('localhost', 'root', 'nx349r0x', 'data');
 		// Error handling.
 		if (mysqli_connect_error()) {
 			trigger_error('Cannot connect it to MySQL: ' . mysqli_connect_error(), E_USER_ERROR);
@@ -57,11 +57,19 @@ class Database{
 			foreach($fields as $key=> $value){
 				$q .= $key."="."'".$value."',";		
 			}
-			$q =  substr($q, 0, -1).' where id = '.$updated_id.'';
-			
+			$q =  substr($q, 0, -1).' where id = '.$updated_id.'';			
 			$this->_connection->query($q);
+		}		
+	}
+	
+	public function displayAction($table, $id)
+	{
+		if(!empty($this->_connection)){
+			$q = 'select * from '.$table.'';
+			if(!empty($id))
+				$q .= ' where id = '.$id.'';			
+			return $this->_connection->query($q);		
 		}
-		
 	}
 	
 	public function deleteAction($table, $delete_id)

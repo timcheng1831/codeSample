@@ -1,3 +1,4 @@
+<?php require_once("initializes.php");?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,13 +9,12 @@
     <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css" media="screen" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
     <!-- BEGIN: load jquery -->
-    <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery.ui.core.min.js"></script>
-    <script src="js/jquery-ui/jquery.ui.widget.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui/jquery.ui.accordion.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- END: load jquery -->
     <!-- BEGIN: load jqplot -->
     <link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" />
@@ -22,16 +22,9 @@
     <script language="javascript" type="text/javascript" src="js/jqPlot/jquery.jqplot.min.js"></script>
     <!-- END: load jqplot -->
     <script src="js/setup.js" type="text/javascript"></script>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            setupDashboardChart('chart1');
-            setupLeftMenu();
-			setSidebarHeight();
-
-
-        });
-    </script>
+    <script>$(function() {
+$( "#datepicker" ).datepicker();
+});</script>
 </head>
 <body>
     <div class="container_12">
@@ -149,40 +142,24 @@
         <div class="grid_5">
             <div class="box round">
                 <h2>
-                    Column on Left</h2>
+                    Figures</h2>
                 <div class="block">
-                  <li style="margin: 13px 13px; display:inline; ">
-                    <img src="img/gallery/thumbs_small/image_25.png" alt="" style="opacity: 1;">
-                    </img>
-                   </li>
-                   <li style="margin: 13px 13px; display:inline; ">
-                    	<img src="img/gallery/thumbs_small/image_25.png" alt="" style="opacity: 1;">
-                    	</img>
-                   </li>
-                   <li style="margin: 13px 13px; display:inline; ">
-                    	<img src="img/gallery/thumbs_small/image_25.png" alt="" style="opacity: 1;">
-                    	</img>
-                   </li>
-                    <li style="margin: 13px 13px; display:inline; ">
-                    	<img src="img/gallery/thumbs_small/image_25.png" alt="" style="opacity: 1;">
-                    	</img>
-                   </li>
-                   <li style="margin: 13px 13px; display:inline; ">
-                    	<img src="img/gallery/thumbs_small/image_25.png" alt="" style="opacity: 1;">
-                    	</img>
-                   </li>
-                   <br />
-                   <form>
-                   		<div style="margin: 13px; width:111px; display:inline-block;">
-                   	    	<h2>asdf<input type="radio" name="type" value="a" /></h2> 
-                  	 	</div>
-                   		<div style="margin: 13px; width:111px; display:inline-block;">
-                   	  		<h2>asdf<input type="radio" name="type" value="b"/></h2>
-                   		</div>
-                  	 	<div style="margin: 13px; width:111px; display:inline-block;">
-                    	 	<h2>asdf<input type="radio" name="type" value="c"/></h2>
-	                   	</div>
-                   	</form>
+                	 	<?php 
+                		    while ($obj = $daily_expense_types ->fetch_object()) 	{
+                		    	echo '<div class="stat-col">
+                		    			 		<p class="purple">
+	                		    			 		7000
+                		    			 		</p><span>'.$obj->name.'
+                		    			 		<input name="type" type="radio" value="'.$obj->id.'" /></span>
+                		    			 	</div>';
+ 											  }
+                		?>
+                		<div class="stat-col">
+    
+                		</div>                   
+                    <div class="clear">
+                    </div>		<br /><span>	Date:</span><input type="text" id="datepicker" />
+                    <input type="submit" class="btn btn-green" style="margin-top:10px;" value="Submit"/>
                 </div>
             </div>
         </div>
